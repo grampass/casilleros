@@ -24,6 +24,10 @@ jobs:
       url: ${{ steps.despliegue.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # El panel de demostración (logistica.html) no se publica:
+      # el panel real de Logística es la Google Sheet. Sigue disponible en local.
+      - name: Quitar panel de demostración
+        run: rm -f sitio/logistica.html sitio/js/paginas/logistica.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -126,7 +126,7 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - Cuenta de GitHub de Paolo: **grampass** (creada con su Gmail personal). Organización del CCOA: opcional, más adelante (se transfiere el repositorio con un clic).
 - **Repositorio:** https://github.com/grampass/casilleros (público). **Página publicada:** https://grampass.github.io/casilleros/ (desde 2026-10-08).
 - Para publicar cambios: `git add -A`, `git commit -m "…"`, `git push` (desde `PROYECTO/`). La página se actualiza sola en ~1 minuto.
-- La publicación es automática con GitHub Actions (`.github/workflows/pagina.yml`), que **solo publica `sitio/`**. En GitHub: *Settings → Pages → Source: GitHub Actions*.
+- La publicación es automática con GitHub Actions (`.github/workflows/pagina.yml`), que **solo publica `sitio/`** y **excluye el panel de demostración** (`logistica.html` + `js/paginas/logistica.js`), que solo se usa en local. En GitHub: *Settings → Pages → Source: GitHub Actions*.
 - En la computadora de Paolo están instalados **Git** y **GitHub CLI** (`gh`). El inicio de sesión se hace con un **token clásico** (permisos: `repo`, `workflow`, `read:org`; sin vencimiento), porque el inicio con código del navegador falló por cortes de conexión con `github.com`.
 - **Nunca** pedir ni escribir el token en un chat.
 
