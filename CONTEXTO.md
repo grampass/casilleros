@@ -124,15 +124,16 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 
 ## 8. Publicación (GitHub)
 - Cuenta de GitHub de Paolo: **grampass** (creada con su Gmail personal). Organización del CCOA: opcional, más adelante (se transfiere el repositorio con un clic).
-- Repositorio previsto: `casilleros` (público, requisito de Pages gratis). La página quedaría en `https://grampass.github.io/casilleros/`.
+- **Repositorio:** https://github.com/grampass/casilleros (público). **Página publicada:** https://grampass.github.io/casilleros/ (desde 2026-10-08).
+- Para publicar cambios: `git add -A`, `git commit -m "…"`, `git push` (desde `PROYECTO/`). La página se actualiza sola en ~1 minuto.
 - La publicación es automática con GitHub Actions (`.github/workflows/pagina.yml`), que **solo publica `sitio/`**. En GitHub: *Settings → Pages → Source: GitHub Actions*.
 - En la computadora de Paolo están instalados **Git** y **GitHub CLI** (`gh`). El inicio de sesión se hace con un **token clásico** (permisos: `repo`, `workflow`, `read:org`; sin vencimiento), porque el inicio con código del navegador falló por cortes de conexión con `github.com`.
 - **Nunca** pedir ni escribir el token en un chat.
 
 ## 9. Pendientes
 **De Paolo:**
-- [x] `gh auth login` con token (cuenta grampass) ✔. Repositorio local creado; **falta su confirmación para crear el repositorio público y subir**.
-- [ ] Instalar la Google Sheet (`docs/Instalar la hoja.md`) y pasar la URL `/exec`.
+- [x] `gh auth login` con token (cuenta grampass) ✔. Repositorio público creado y página publicada ✔.
+- [ ] Volver a pegar `servidor/Codigo.gs` en Apps Script y crear una **nueva versión** de la implementación (incluye el arreglo del ciclo como fecha). No urgente: el ciclo ya se corrigió a mano en la hoja.
 - [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
 - [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
@@ -144,7 +145,7 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - [ ] Correos de Logística para el panel (por ahora solo el de Paolo).
 
 **Técnicos:**
-- [ ] Publicar en GitHub Pages.
+- [x] Publicar en GitHub Pages ✔.
 - [x] Backend Google Sheets + Apps Script escrito (sección 7); falta probarlo con la hoja real.
 - [ ] Indicar en el mapa qué fila está arriba/abajo.
 - [x] Abrir/cerrar periodo de alquiler (casilla en Configuración).
@@ -162,3 +163,4 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - **2026-08/09:** idea inicial; Excel antiguo y foto de casilleros como referencia.
 - **2026-10-08:** prototipo completo (página pública + panel + documentación). Rediseño con identidad del CCOA (mascota, Bebas Neue, sin degradados). Decididos precio S/ 14, Yape, 48 h, condiciones, prioridad de renovación. Carpeta reorganizada (`sitio/`, `docs/`, `material/`). Preparada la publicación en GitHub; Git y GitHub CLI instalados.
 - **2026-10-08 (tarde):** sesión de GitHub lista (grampass). Escrito el backend en Apps Script; la Google Sheet reemplaza al panel de Logística (casillas Ocupado/Pagó/Inhabilitado, historial con ciclo, nuevo ciclo con prioridad). Página conectable al servidor (`CONFIG.servidor`), aviso de periodo cerrado, mascotas saltando y portapapeles.
+- **2026-10-08 (noche):** Google Sheet instalada en el Gmail personal de Paolo y probada (reserva, correo, WhatsApp). QR de Yape añadido. Condiciones sin citar la ley. **Publicado** en https://grampass.github.io/casilleros/ conectado a la hoja real.
