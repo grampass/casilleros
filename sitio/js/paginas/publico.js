@@ -122,10 +122,10 @@ function confirmar(a) {
 
 function pie() {
   const r = CONFIG.redes;
-  $('#redes').innerHTML = `
-    <a href="${r.instagram}" target="_blank" rel="noopener">Instagram ${seguro(r.usuario)}</a>
-    <a href="${r.enlaces}" target="_blank" rel="noopener">Todas nuestras redes</a>
-    <a href="mailto:${r.correo}">${seguro(r.correo)}</a>`;
+  $('#redes').innerHTML = r.lista
+    .map(x => `<a href="${seguro(x.url)}" target="_blank" rel="noopener">${seguro(x.nombre)}</a>`).join('') +
+    `<a href="mailto:${r.correo}">${seguro(r.correo)}</a>`;
+  $('#usuario').textContent = r.usuario;
 }
 
 async function iniciar() {

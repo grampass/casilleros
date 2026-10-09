@@ -96,8 +96,10 @@ a { color: var(--morado); }
   color: var(--texto-suave);
   font-size: .85rem;
   padding: 28px 16px;
-  border-top: 1px solid var(--borde);
+  background: var(--superficie);
+  border-top: 4px solid var(--naranja);
 }
+.pie__logo { height: 64px; width: auto; }
 .pie p { margin: 0 0 4px; }
 .pie__redes { display: flex; flex-wrap: wrap; gap: 6px 16px; }
 .pie__redes a { color: var(--morado); font-weight: 700; text-decoration: none; }

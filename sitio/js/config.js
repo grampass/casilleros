@@ -28,11 +28,16 @@ export const CONFIG = {
   yape: { titular: 'Paolo Palacios', numero: '966 378 397', qr: 'assets/yape-qr.png' },
 
   // Redes del CCOA (pie de página).
+  // Para quitar una, bórrala de la lista; para agregar, copia una línea.
   redes: {
-    instagram: 'https://www.instagram.com/ccoafiqt.uni/',
-    enlaces: 'https://linktr.ee/ccoafiqt.uni',
     usuario: '@ccoafiqt.uni',
     correo: 'ccoa.fiqt@uni.edu.pe',
+    lista: [
+      { nombre: 'Instagram', url: 'https://www.instagram.com/ccoafiqt.uni/' },
+      { nombre: 'Facebook', url: 'https://www.facebook.com/ccoafiqt.uni' },
+      { nombre: 'Canal de WhatsApp', url: 'https://whatsapp.com/channel/0029VbBHSjF5kg6yN3Epmz3d' },
+      { nombre: 'Todas nuestras redes', url: 'https://linktr.ee/ccoafiqt.uni' },
+    ],
   },
 
   // Condiciones que el alumno acepta al reservar. Se pueden editar libremente.
