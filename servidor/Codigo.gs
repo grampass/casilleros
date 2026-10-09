@@ -66,6 +66,7 @@ function configurar() {
     conf = libro.insertSheet(HOJAS.config);
     const filas = Object.values(AJUSTES).map(([t, v, e]) => [t, v, e]);
     conf.getRange(1, 1, 1, 3).setValues([['Ajuste', 'Valor', 'Para qué sirve']]);
+    conf.getRange(filaAjuste_('ciclo'), 2).setNumberFormat('@');   // si no, "2026-2" se vuelve fecha
     conf.getRange(2, 1, filas.length, 3).setValues(filas);
     const correo = ui.prompt('Aviso de reservas', '¿A qué correo aviso cada reserva? (puedes dejarlo vacío)', ui.ButtonSet.OK);
     conf.getRange(filaAjuste_('avisar'), 2).setValue(correo.getResponseText().trim());
@@ -289,7 +290,7 @@ function nuevoCiclo() {
       hoja.getRange(f.fila, C.notas).setValue('Renovación pendiente');
     });
     const conf2 = libroConfig_();
-    conf2.getRange(filaAjuste_('ciclo'), 2).setValue(nuevo);
+    conf2.getRange(filaAjuste_('ciclo'), 2).setNumberFormat('@').setValue(nuevo);
     conf2.getRange(filaAjuste_('abierto'), 2).setValue(false);
   } finally {
     candado.releaseLock();
@@ -333,8 +334,11 @@ function leerConfig_() {
   const v = libroConfig_().getRange(2, 2, Object.keys(AJUSTES).length, 1).getValues().map(x => x[0]);
   const k = Object.keys(AJUSTES);
   const val = clave => v[k.indexOf(clave)];
+  // Si Sheets convirtió "2026-2" en fecha, se recupera como año-mes.
+  const ciclo = val('ciclo') instanceof Date
+    ? `${val('ciclo').getFullYear()}-${val('ciclo').getMonth() + 1}` : String(val('ciclo'));
   return {
-    ciclo: String(val('ciclo')), precio: Number(val('precio')) || null,
+    ciclo, precio: Number(val('precio')) || null,
     horas: Number(val('horas')) || 48, abierto: val('abierto') === true,
     avisar: String(val('avisar') || ''), uno: val('uno') === true,
   };

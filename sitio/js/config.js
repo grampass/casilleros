@@ -9,7 +9,7 @@ export const CONFIG = {
   // null = modo prueba: los datos se guardan solo en este navegador.
   // Con servidor, el ciclo, precio, horas y periodo abierto se toman
   // de la pestaña "Configuración" de la Google Sheet.
-  servidor: null,
+  servidor: 'https://script.google.com/macros/s/AKfycbzbpctkLZsxTA5G9uOx16sUrQOxG-j9rdlO7wbwpMS0lL7KBi0qvh2Y2D7i_5kBW_7YSA/exec',
 
   centro: 'Centro Cultural Óscar Almenara',
   siglas: 'CCOA',
