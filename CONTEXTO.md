@@ -44,7 +44,9 @@ Página web para que la **Secretaría de Logística** del **Centro Cultural Ósc
 2. Al reservar tienes 48 h para pagar por Yape y enviar la captura por WhatsApp; si no, la reserva se libera.
 3. Al terminar el ciclo hay un plazo de renovación. Quienes ya tienen casillero tienen prioridad; si no renuevas a tiempo, el casillero queda libre para otro alumno.
 4. Al dejar tu casillero, retira todas tus cosas.
-5. Tus datos (nombre, código y celular) solo los ve Logística y se usan únicamente para gestionar el alquiler (Ley 29733).
+5. Tus datos (nombre, código y celular) solo los ve Logística y se usan únicamente para gestionar tu casillero.
+
+(Paolo prefirió no citar la Ley 29733 en el texto; la casilla "Acepto las condiciones" se mantiene, que es el consentimiento que pide esa ley.)
 
 ## 4. Casilleros (disposición)
 - **Bloque A:** dentro del CCOA, 1A–20A. **Bloque B:** fuera del CCOA, 1B–20B.
@@ -132,7 +134,8 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - [x] `gh auth login` con token (cuenta grampass) ✔. Repositorio local creado; **falta su confirmación para crear el repositorio público y subir**.
 - [ ] Instalar la Google Sheet (`docs/Instalar la hoja.md`) y pasar la URL `/exec`.
 - [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
-- [ ] QR de Yape → guardarlo como `sitio/assets/yape-qr.png` y poner `qr: 'assets/yape-qr.png'` en `config.js`.
+- [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
+- [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
 - [ ] Lista actual de ocupantes (la tiene el secretario de Logística).
 - [ ] Fotos de los casilleros (arriba/abajo, numeración real).
 - [ ] Fechas del periodo de alquiler, del plazo de renovación y del fin de ciclo (`CONFIG.finDeCiclo`, hoy `2026-12-20` provisional).

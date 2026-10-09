@@ -25,7 +25,7 @@ export const CONFIG = {
   precio: 14,
 
   // Pago por Yape. qr: ruta de la imagen del QR (null = no se muestra).
-  yape: { titular: 'Paolo Palacios', numero: '966 378 397', qr: null },
+  yape: { titular: 'Paolo Palacios', numero: '966 378 397', qr: 'assets/yape-qr.png' },
 
   // Redes del CCOA (pie de página).
   redes: {
@@ -41,7 +41,7 @@ export const CONFIG = {
     'Al reservar tienes {horas} h para pagar por Yape y enviar la captura por WhatsApp; si no, la reserva se libera.',
     'Al terminar el ciclo hay un plazo de renovación. Quienes ya tienen casillero tienen prioridad; si no renuevas a tiempo, el casillero queda libre para otro alumno.',
     'Al dejar tu casillero, retira todas tus cosas.',
-    'Tus datos (nombre, código y celular) solo los ve Logística y se usan únicamente para gestionar el alquiler (Ley 29733).',
+    'Tus datos (nombre, código y celular) solo los ve Logística y se usan únicamente para gestionar tu casillero.',
   ],
 
   // Horas que dura una reserva sin pagar antes de liberarse sola.

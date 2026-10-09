@@ -60,7 +60,7 @@ function pedir(casillero) {
         <summary>Leer condiciones</summary>
         ${condiciones()}
       </details>
-      <label class="check"><input type="checkbox" name="acepta" required> Acepto las condiciones y el uso de mis datos</label>
+      <label class="check"><input type="checkbox" name="acepta" required> Acepto las condiciones</label>
       <input name="web" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="formulario__error" id="error-general" role="alert"></p>
       <button class="boton boton--primario" type="submit">Reservar ${casillero.id}</button>
