@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casilleros CCOA</title>
+  <meta name="description" content="Alquiler de casilleros del Centro Cultural Óscar Almenara (FIQT · UNI).">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+</head>
+<body>
+  <div class="cabecera">
+    <header class="barra">
+      <div class="barra__marca">
+        <img src="assets/logo-claro.png" alt="Centro Cultural Óscar Almenara" class="barra__logo">
+        <span class="barra__titulo barra__titulo--grande">Casilleros</span>
+      </div>
+      <a class="boton boton--claro" data-whatsapp target="_blank" rel="noopener">¿Dudas? Escríbenos</a>
+    </header>
+
+    <section class="portada">
+      <div class="portada__texto">
+        <p class="sobretitulo">Logística · Ciclo <span data-ciclo></span></p>
+        <h1>Alquila tu casillero</h1>
+        <p>Elige uno libre, déjanos tus datos y paga por Yape. Es tuyo todo el ciclo.</p>
+        <ol class="pasos">
+          <li><span>Elige un casillero <em>libre</em></span></li>
+          <li><span>Llena tus datos: se aparta <span class="sin-corte"><span id="horas"></span>&nbsp;h</span></span></li>
+          <li><span>Yapea <span id="precio" class="sin-corte"></span> y manda la captura</span></li>
+        </ol>
+      </div>
+      <img class="portada__mascota" src="assets/mascota.png" alt="Mascota del CCOA">
+    </section>
+  </div>
+
+  <main class="contenedor">
+    <section class="tarjeta">
+      <div class="tarjeta__cab">
+        <p id="contador" class="contador"></p>
+        <div id="leyenda" class="leyenda"></div>
+      </div>
+      <div id="mapa" class="mapa"></div>
+    </section>
+
+    <section class="tarjeta tarjeta--suave">
+      <h2>Condiciones</h2>
+      <div id="condiciones"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p class="firma firma--oscura">Centro<br>Cultural<br>Óscar<br>Almenara</p>
+    <div>
+      <p>Secretaría de Logística · FIQT · UNI</p>
+      <nav id="redes" class="pie__redes"></nav>
+    </div>
+  </footer>
+
+  <script type="module" src="js/paginas/publico.js"></script>
+</body>
+</html>

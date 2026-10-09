@@ -1,0 +1,104 @@
+/* ─────────────────────────────────────────────────────────────
+   BASE: colores, tipografía y estructura general.
+   Para cambiar la paleta, edita solo las variables de :root.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Marca */
+  --naranja: #f0932b;
+  --naranja-fuerte: #d97a12;
+  --naranja-suave: #fff1e0;
+  --morado: #6c3fa3;
+  --morado-fuerte: #52307f;
+  --morado-suave: #f1eafa;
+
+  /* Estados de casillero */
+  --libre: #2f9e63;
+  --libre-suave: #e6f6ed;
+  --reservado: #f0932b;
+  --reservado-suave: #fff1e0;
+  --ocupado: #6c3fa3;
+  --ocupado-suave: #ece3f8;
+  --inhabilitado: #a39fa8;
+  --inhabilitado-suave: #efeef0;
+  --peligro: #c8414b;
+
+  /* Cabecera oscura */
+  --oscuro: #241634;
+  --oscuro-2: #3a2356;
+  --sobre-oscuro: #f4eefb;
+  --sobre-oscuro-suave: #c9b8de;
+
+  /* Neutros */
+  --fondo: #ece6ef;
+  --superficie: #ffffff;
+  --texto: #241b2e;
+  --texto-suave: #675d71;
+  --borde: #e2d9e6;
+
+  /* Tipografía (Bebas Neue = la "Neue" de los afiches del CCOA en Canva) */
+  --fuente-titulos: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --fuente-texto: 'DM Sans', system-ui, sans-serif;
+
+  --radio: 14px;
+  --sombra: 0 1px 2px rgba(36, 22, 52, .06), 0 8px 24px rgba(36, 22, 52, .10);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.5;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1; font-family: var(--fuente-titulos); font-weight: 400; letter-spacing: .02em; }
+h4 { margin: 0; font-weight: 700; }
+.sin-corte { white-space: nowrap; }
+h1 { font-size: clamp(2.8rem, 7vw, 4.4rem); }
+h2 { font-size: 1.6rem; }
+
+a { color: var(--morado); }
+
+.contenedor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: grid;
+  gap: 24px;
+}
+
+.etiqueta {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--morado-suave);
+  color: var(--morado);
+  font-weight: 700;
+  font-size: .85rem;
+}
+
+.vacio { color: var(--texto-suave); text-align: center; padding: 16px; }
+
+/* Firma del CCOA: "Centro / Cultural / Óscar / Almenara" con barra,
+   igual que en la esquina de sus afiches. */
+.firma {
+  margin: 0; padding-left: 10px; border-left: 3px solid var(--naranja);
+  font-weight: 700; font-size: .78rem; line-height: 1.1; color: #fff;
+}
+.firma--oscura { color: var(--texto); }
+
+.pie {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px;
+  color: var(--texto-suave);
+  font-size: .85rem;
+  padding: 28px 16px;
+  border-top: 1px solid var(--borde);
+}
+.pie p { margin: 0 0 4px; }
+.pie__redes { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.pie__redes a { color: var(--morado); font-weight: 700; text-decoration: none; }
+.pie__redes a:hover { text-decoration: underline; }

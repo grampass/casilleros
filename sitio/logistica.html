@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de Logística · Casilleros CCOA</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+</head>
+<body>
+  <div class="aviso-prototipo">Prototipo · los datos se guardan solo en este navegador y no hay inicio de sesión real todavía.</div>
+
+  <header class="barra barra--oscura">
+    <div class="barra__marca">
+      <img src="assets/logo-claro.png" alt="Centro Cultural Óscar Almenara" class="barra__logo">
+      <div class="barra__texto">
+        <span class="barra__titulo">Panel de Logística</span>
+        <span class="barra__sub">Casilleros · uso interno</span>
+      </div>
+    </div>
+    <label class="barra__encargado">Encargado <input id="encargado" placeholder="Tu nombre"></label>
+  </header>
+
+  <main class="contenedor">
+    <section class="encabezado-panel">
+      <div>
+        <p class="etiqueta">Ciclo <span id="ciclo"></span></p>
+        <h1>Casilleros</h1>
+      </div>
+      <div class="encabezado-panel__acciones">
+        <button class="boton boton--contorno" id="exportar">Exportar a Excel</button>
+        <button class="boton boton--texto" id="reiniciar">Reiniciar prueba</button>
+      </div>
+    </section>
+
+    <section id="resumen" class="resumen"></section>
+
+    <section class="tarjeta">
+      <div class="tarjeta__cab">
+        <p class="contador">Toca un casillero para ver o editar</p>
+        <div id="leyenda" class="leyenda"></div>
+      </div>
+      <div id="mapa" class="mapa"></div>
+    </section>
+
+    <div class="dos-columnas">
+      <section class="tarjeta">
+        <div class="tarjeta__cab">
+          <h2>Alquileres del ciclo</h2>
+          <div class="filtros">
+            <input id="buscar" type="search" placeholder="Buscar nombre, código o casillero">
+            <select id="filtro">
+              <option value="todos">Todos</option>
+              <option value="reservado">Por pagar</option>
+              <option value="pagado">Pagados</option>
+              <option value="finalizado">Finalizados</option>
+              <option value="cancelado">Cancelados</option>
+            </select>
+          </div>
+        </div>
+        <div id="tabla" class="tabla"></div>
+      </section>
+
+      <section class="tarjeta">
+        <div class="tarjeta__cab"><h2>Bitácora</h2></div>
+        <ul id="bitacora" class="bitacora"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/paginas/logistica.js"></script>
+</body>
+</html>
