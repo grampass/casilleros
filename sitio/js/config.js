@@ -5,6 +5,12 @@
 // ─────────────────────────────────────────────────────────────
 
 export const CONFIG = {
+  // Dirección de la aplicación web de Apps Script (termina en /exec).
+  // null = modo prueba: los datos se guardan solo en este navegador.
+  // Con servidor, el ciclo, precio, horas y periodo abierto se toman
+  // de la pestaña "Configuración" de la Google Sheet.
+  servidor: null,
+
   centro: 'Centro Cultural Óscar Almenara',
   siglas: 'CCOA',
 

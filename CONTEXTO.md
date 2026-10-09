@@ -53,7 +53,9 @@ Página web para que la **Secretaría de Logística** del **Centro Cultural Ósc
 - El Excel `material/Casilleros 2026-1 (antiguo).xlsx` está **desactualizado**: solo sirve para la disposición, no para los ocupantes.
 
 ## 5. Estado técnico actual
-**Es un prototipo funcional:** todo funciona, pero **los datos se guardan solo en el navegador** (`localStorage`). Un alumno que reserve desde su celular no aparece en el panel de otra computadora. **Falta el backend real** (sección 7).
+- **Backend escrito, falta instalarlo:** `servidor/Codigo.gs` (Google Apps Script) está listo. Paolo debe pegarlo en una Google Sheet de su Gmail personal y desplegarlo (guía: `docs/Instalar la hoja.md`). Luego se pone la URL `/exec` en `sitio/js/config.js` → `servidor`.
+- Mientras `servidor` sea `null`, la página funciona en **modo prueba** (datos solo en el navegador). Con `?demo` siempre usa el modo prueba.
+- **La Google Sheet es el panel de Logística** (decidido 2026-10-08). `sitio/logistica.html` queda solo como demostración local.
 
 ### Tecnología
 - HTML + CSS + JavaScript puro con módulos ES. **Sin dependencias, sin compilación, sin npm.**
@@ -99,24 +101,24 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 │  ├─ AGENTS.md             instrucciones breves para cualquier IA
 │  ├─ README.md
 │  ├─ sitio/                la página (lo único que se publica)
+│  ├─ servidor/Codigo.gs    servidor: se pega en la Google Sheet (Apps Script)
 │  ├─ docs/                 notas de Obsidian (detalle por tema; empezar por "00 Inicio.md")
 │  └─ .github/workflows/pagina.yml   publica sitio/ en GitHub Pages
 ├─ material/                originales: logo, mascota, foto de casilleros, Excel antiguo
 └─ capturas/                capturas de pantalla para mostrar al equipo
 ```
 
-## 7. Plan para la versión real (backend)
-**Google Sheets + Google Apps Script** (gratis, sin servidor propio):
-- La hoja es **privada**; solo el script la lee y escribe. La página pública solo recibe `id` y `estado`.
-- El servidor **vuelve a validar todo** y usa `LockService` para que dos alumnos no tomen el mismo casillero a la vez.
-- Panel de Logística con **inicio de sesión de Google** y lista blanca de correos. Por ahora el único correo es el institucional de Paolo (`@uni.pe`); los de Logística se definirán después.
-- Correo de aviso a Logística por cada reserva.
-- **Pedido de Paolo:** poder alquilar "por fuera" editando la hoja (casilla de verificación **Ocupado** / **Pagó** por casillero) y que la página se actualice, y al revés. Propuesta: pestaña *Casilleros* con una fila por casillero (`Casillero | Ocupado ☑ | Pagó ☑ | Apellidos | Nombres | Código | Celular | Fecha | Notas`) + pestaña *Historial*. Implica que la hoja "manda" sobre el estado (cambio respecto al modelo actual).
-- Botón para **abrir/cerrar el periodo de alquiler** (fuera del periodo solo se ve el mapa y un aviso).
-- Se prueba con la cuenta de Paolo y luego se copia a una cuenta del CCOA.
-- Alternativa si crece: Vercel + Supabase.
-
-Detalle: `docs/Seguridad.md`.
+## 7. Backend: Google Sheets + Apps Script (`servidor/Codigo.gs`)
+- **Dónde vive:** Google Sheet en el **Gmail personal de Paolo** (pruebas y arranque); después se copia a una cuenta del CCOA. Avisos de reserva al correo institucional de Paolo (se escribe en la pestaña Configuración, no en el código).
+- **La hoja es la base de datos y el panel de Logística.** Pestañas:
+  - **Casilleros:** una fila por casillero: `Casillero | Bloque | Ocupado ☑ | Pagó ☑ | Inhabilitado ☑ | Apellidos | Nombres | Código UNI | Celular | Reservado el | Notas`. La hoja **manda** sobre el estado: inhabilitado > ocupado+pagó = ocupado > ocupado sin pagó = reservado > libre. Colores automáticos.
+  - **Historial:** `Fecha | Ciclo | Casillero | Acción | Apellidos | Nombres | Código UNI | Celular | Por | Detalle`. Se llena solo (reservas de la página, ediciones a mano vía `onEdit`, vencimientos, fin de ciclo). Nunca se borra; tiene filtro y se exporta con Archivo → Descargar.
+  - **Configuración:** ciclo, precio, horas para pagar, periodo abierto (casilla), correo de aviso, uno por persona.
+- **Comportamiento:** desmarcar *Ocupado* libera (la fila se limpia y queda en el Historial). Marcar *Pagó* confirma. Reservas de la página vencen a las *Horas para pagar* (disparador cada hora + revisión en cada visita); filas sin *Reservado el* (alquiler a mano o renovación) nunca vencen.
+- **Seguridad:** la hoja no se comparte; la página solo recibe `id`/`estado`; el servidor revalida todo, usa `LockService`, controla uno por persona por código **y** celular, y tiene un campo trampa contra robots.
+- **Nuevo ciclo** (menú *Casilleros CCOA*): anota "Fin de ciclo" de cada ocupado, desmarca Pagó, deja la fila apartada para su dueño (prioridad de renovación), cambia el ciclo y cierra el periodo.
+- **Página:** `sitio/js/datos/servidor.js` (GET mapa, POST reservar en texto plano para evitar CORS). Ciclo, precio y horas se toman de la hoja. Periodo cerrado → aviso con la mascota del portapapeles y casilleros no clicables.
+- Alternativa si crece: Vercel + Supabase. Más detalle: `docs/Instalar la hoja.md`, `docs/Seguridad.md`.
 
 ## 8. Publicación (GitHub)
 - Cuenta de GitHub de Paolo: **grampass** (creada con su Gmail personal). Organización del CCOA: opcional, más adelante (se transfiere el repositorio con un clic).
@@ -127,7 +129,9 @@ Detalle: `docs/Seguridad.md`.
 
 ## 9. Pendientes
 **De Paolo:**
-- [ ] Terminar `gh auth login` con el token → luego crear el repositorio y subir.
+- [x] `gh auth login` con token (cuenta grampass) ✔. Repositorio local creado; **falta su confirmación para crear el repositorio público y subir**.
+- [ ] Instalar la Google Sheet (`docs/Instalar la hoja.md`) y pasar la URL `/exec`.
+- [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
 - [ ] QR de Yape → guardarlo como `sitio/assets/yape-qr.png` y poner `qr: 'assets/yape-qr.png'` en `config.js`.
 - [ ] Lista actual de ocupantes (la tiene el secretario de Logística).
 - [ ] Fotos de los casilleros (arriba/abajo, numeración real).
@@ -138,9 +142,9 @@ Detalle: `docs/Seguridad.md`.
 
 **Técnicos:**
 - [ ] Publicar en GitHub Pages.
-- [ ] Backend Google Sheets + Apps Script (sección 7).
+- [x] Backend Google Sheets + Apps Script escrito (sección 7); falta probarlo con la hoja real.
 - [ ] Indicar en el mapa qué fila está arriba/abajo.
-- [ ] Abrir/cerrar periodo de alquiler.
+- [x] Abrir/cerrar periodo de alquiler (casilla en Configuración).
 - [ ] Guía corta de uso para Logística.
 
 ## 10. Preferencias de trabajo de Paolo
@@ -153,4 +157,5 @@ Detalle: `docs/Seguridad.md`.
 
 ## 11. Historial
 - **2026-08/09:** idea inicial; Excel antiguo y foto de casilleros como referencia.
-- **2026-10-08:** prototipo completo (página pública + panel + documentación). Rediseño con identidad del CCOA (mascota, Bebas Neue, sin degradados). Decididos precio S/ 14, Yape, 48 h, condiciones, prioridad de renovación. Carpeta reorganizada (`sitio/`, `docs/`, `material/`). Preparada la publicación en GitHub; Git y GitHub CLI instalados; inicio de sesión pendiente.
+- **2026-10-08:** prototipo completo (página pública + panel + documentación). Rediseño con identidad del CCOA (mascota, Bebas Neue, sin degradados). Decididos precio S/ 14, Yape, 48 h, condiciones, prioridad de renovación. Carpeta reorganizada (`sitio/`, `docs/`, `material/`). Preparada la publicación en GitHub; Git y GitHub CLI instalados.
+- **2026-10-08 (tarde):** sesión de GitHub lista (grampass). Escrito el backend en Apps Script; la Google Sheet reemplaza al panel de Logística (casillas Ocupado/Pagó/Inhabilitado, historial con ciclo, nuevo ciclo con prioridad). Página conectable al servidor (`CONFIG.servidor`), aviso de periodo cerrado, mascotas saltando y portapapeles.

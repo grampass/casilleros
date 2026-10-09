@@ -15,10 +15,34 @@ import { enlaceWhatsApp, precio, fecha, seguro, condiciones, ICONO_WHATSAPP } fr
 const $ = s => document.querySelector(s);
 
 async function refrescar() {
-  const casilleros = await api.verMapa();
+  let datos;
+  try {
+    datos = await api.verMapa();
+  } catch {
+    $('#contador').textContent = '';
+    $('#mapa').innerHTML = `<p class="vacio">No se pudo cargar el mapa. Revisa tu conexión y
+      <button type="button" class="boton boton--texto" id="reintentar">vuelve a intentar</button>.</p>`;
+    $('#reintentar').addEventListener('click', refrescar);
+    return;
+  }
+  // Con servidor, la Google Sheet manda sobre ciclo, precio y horas.
+  if (datos.ciclo) CONFIG.ciclo = datos.ciclo;
+  if (datos.precio) CONFIG.precio = datos.precio;
+  if (datos.horas) CONFIG.horasReserva = datos.horas;
+  textosDelCiclo();
+
+  const { casilleros, abierto } = datos;
   const libres = casilleros.filter(c => c.estado === 'libre').length;
   $('#contador').innerHTML = `<strong>${libres}</strong> de ${casilleros.length} casilleros libres`;
-  dibujarMapa($('#mapa'), casilleros, { alElegir: pedir });
+  $('#aviso').hidden = abierto;
+  dibujarMapa($('#mapa'), casilleros, { alElegir: pedir, clicables: abierto ? ['libre'] : [] });
+}
+
+function textosDelCiclo() {
+  document.querySelectorAll('[data-ciclo]').forEach(e => { e.textContent = CONFIG.ciclo; });
+  $('#precio').textContent = precio();
+  $('#horas').textContent = CONFIG.horasReserva;
+  $('#condiciones').innerHTML = condiciones();
 }
 
 function pedir(casillero) {
@@ -37,6 +61,7 @@ function pedir(casillero) {
         ${condiciones()}
       </details>
       <label class="check"><input type="checkbox" name="acepta" required> Acepto las condiciones y el uso de mis datos</label>
+      <input name="web" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="formulario__error" id="error-general" role="alert"></p>
       <button class="boton boton--primario" type="submit">Reservar ${casillero.id}</button>
     </form>`);
@@ -48,7 +73,17 @@ function pedir(casillero) {
     form.querySelectorAll('.campo-error').forEach(e => e.remove());
     form.querySelectorAll('[aria-invalid]').forEach(e => e.removeAttribute('aria-invalid'));
 
-    const r = await api.reservar(casillero.id, datos);
+    const boton = form.querySelector('[type="submit"]');
+    boton.disabled = true;
+    boton.textContent = 'Reservando…';
+    let r;
+    try {
+      r = await api.reservar(casillero.id, datos);
+    } catch {
+      r = { ok: false, mensaje: 'No se pudo conectar. Revisa tu internet e inténtalo otra vez.' };
+    }
+    boton.disabled = false;
+    boton.textContent = `Reservar ${casillero.id}`;
     if (!r.ok) {
       for (const [campo, msj] of Object.entries(r.errores || {})) {
         const input = form.elements[campo];
@@ -71,7 +106,7 @@ function confirmar(a) {
     `Reservé el casillero ${a.casilleroId} para el ciclo ${a.ciclo}. Aquí va la captura de mi Yape.`;
   abrirModal('¡Casillero reservado!', `
     <div class="exito">
-      <img class="exito__mascota" src="assets/mascota.png" alt="">
+      <img class="exito__mascota" src="assets/mascota-saltando.png" alt="">
       <div class="exito__num">${seguro(a.casilleroId)}</div>
       <p>Queda apartado a tu nombre hasta el <strong>${fecha(a.venceReserva)}</strong></p>
       <div class="pago">
@@ -95,11 +130,8 @@ function pie() {
 
 async function iniciar() {
   await demoSiSePide();
-  document.querySelectorAll('[data-ciclo]').forEach(e => { e.textContent = CONFIG.ciclo; });
-  $('#precio').textContent = precio();
-  $('#horas').textContent = CONFIG.horasReserva;
+  textosDelCiclo();
   $('#leyenda').innerHTML = leyenda();
-  $('#condiciones').innerHTML = condiciones();
   const consulta = enlaceWhatsApp('Hola, tengo una consulta sobre los casilleros del CCOA.');
   document.querySelectorAll('[data-whatsapp]').forEach(a => { a.href = consulta; });
   pie();

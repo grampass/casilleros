@@ -39,8 +39,16 @@
 
   <main class="contenedor">
     <section class="tarjeta">
+      <div id="aviso" class="aviso" hidden>
+        <img src="assets/mascota-portapapeles.png" alt="">
+        <div>
+          <h2>Periodo de alquiler cerrado</h2>
+          <p>Por ahora no se pueden reservar casilleros. Los anunciaremos en nuestras redes cuando se abra el próximo periodo.
+            Si tienes una consulta, <a data-whatsapp target="_blank" rel="noopener">escríbenos por WhatsApp</a>.</p>
+        </div>
+      </div>
       <div class="tarjeta__cab">
-        <p id="contador" class="contador"></p>
+        <p id="contador" class="contador">Cargando casilleros…</p>
         <div id="leyenda" class="leyenda"></div>
       </div>
       <div id="mapa" class="mapa"></div>

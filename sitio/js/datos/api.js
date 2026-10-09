@@ -7,12 +7,19 @@
 //   Logística:  verTodo(), confirmarPago(), liberar(),
 //               cambiarHabilitado(), exportarCSV()
 //
-// En la versión real, estas mismas funciones llamarán al
-// servidor (Apps Script), que es quien valida y guarda.
+// Si CONFIG.servidor tiene la dirección de Apps Script, las funciones
+// públicas van al servidor real (Google Sheet). Si está vacío, o la
+// dirección lleva ?demo, todo se guarda en este navegador (prueba).
+// Las funciones de Logística son solo del prototipo: en la versión
+// real, el panel de Logística es la propia Google Sheet.
 // ─────────────────────────────────────────────────────────────
 
 import { CONFIG } from '../config.js';
 import * as almacen from './almacen-local.js';
+import * as servidor from './servidor.js';
+
+// Se decide al cargar (antes de que demo.js limpie la dirección).
+export const REMOTO = Boolean(CONFIG.servidor) && !new URLSearchParams(location.search).has('demo');
 import {
   validarReserva, yaTieneCasillero, reservaVencida,
   calcularVenceReserva, limpiarCodigo,
@@ -54,15 +61,25 @@ function estadoDe(e, c) {
 // ── Público ──────────────────────────────────────────────────
 
 // Solo id y estado: el público nunca recibe datos personales.
+// Devuelve { casilleros, abierto } y, desde el servidor, también ciclo, precio y horas.
 export async function verMapa() {
+  if (REMOTO) return servidor.verMapa();
   const e = await cargar();
-  return e.casilleros.map(c => ({ id: c.id, bloque: c.bloque, numero: c.numero, estado: estadoDe(e, c) }));
+  return {
+    abierto: true,
+    casilleros: e.casilleros.map(c => ({ id: c.id, bloque: c.bloque, numero: c.numero, estado: estadoDe(e, c) })),
+  };
 }
 
 export async function reservar(casilleroId, datos) {
+  // Se valida aquí para mostrar errores al instante; el servidor vuelve a validar.
   const errores = validarReserva(datos);
   if (Object.keys(errores).length) return { ok: false, errores };
+  if (REMOTO) return servidor.reservar(casilleroId, datos);
+  return reservarLocal(casilleroId, datos);
+}
 
+async function reservarLocal(casilleroId, datos) {
   const e = await cargar();
   const c = e.casilleros.find(x => x.id === casilleroId);
   if (!c || estadoDe(e, c) !== 'libre')
@@ -111,7 +128,9 @@ export async function confirmarPago(casilleroId, { monto, medio }, por) {
 // Asignación directa (cuando el alumno escribe por WhatsApp y Logística lo registra).
 export async function asignar(casilleroId, datos, { pagado, monto, medio }, por) {
   // Logística registra en persona: las condiciones se explican al alumno ahí mismo.
-  const r = await reservar(casilleroId, { ...datos, acepta: true });
+  const errores = validarReserva({ ...datos, acepta: true });
+  if (Object.keys(errores).length) return { ok: false, errores };
+  const r = await reservarLocal(casilleroId, datos);
   if (!r.ok) return r;
   const e = await almacen.leer();
   e.bitacora[0].por = por;

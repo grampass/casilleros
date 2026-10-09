@@ -23,11 +23,13 @@ Sistema para que la **Secretaría de Logística** del Centro Cultural Óscar Alm
 - [[Decisiones pendientes]]: lo decidido y lo que falta definir.
 - [[Levantamiento]]: qué anotar en la visita a los casilleros.
 - [[Puesta en marcha]]: qué falta entregar, dónde se aloja, GitHub e identidad visual.
+- [[Instalar la hoja]]: crear la Google Sheet, pegar el servidor y uso diario de Logística.
 
 ## Carpetas
 ```
 PROYECTO/   (repositorio)
 ├─ sitio/     página: index.html, logistica.html, css/, js/, assets/
+├─ servidor/  Codigo.gs: se pega en la Google Sheet (Apps Script)
 ├─ docs/      estas notas (abrir como bóveda de Obsidian)
 └─ .github/   publicación automática de sitio/ en GitHub Pages
 ```
