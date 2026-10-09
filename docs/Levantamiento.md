@@ -16,8 +16,10 @@ Volver a [[00 Inicio]]. Lo que hay que anotar para que el mapa sea igual al real
 Ver [[Decisiones pendientes]].
 
 ## Dónde se carga
-En `js/config.js` → `bloques`:
+En `sitio/js/config.js` → `bloques` (cómo se dibuja):
 
 ```js
 { id: 'A', nombre: 'Dentro del CCOA', columnas: 5, filas: 4, orden: 'filas' },
 ```
+
+Si cambia **la cantidad** de casilleros, también hay que cambiar `BLOQUES` en `servidor/Codigo.gs` y agregar las filas en la hoja.

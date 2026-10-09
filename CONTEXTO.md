@@ -78,7 +78,7 @@ datos     sitio/js/datos/api.js                       ← ÚNICA puerta a los da
 lógica    sitio/js/logica/reglas.js                   ← validaciones y estados
 ajustes   sitio/js/config.js                          ← TODO lo editable
 ```
-**Regla:** las páginas nunca tocan el almacén, siempre pasan por `api.js`. Para pasar al backend real se crea `almacen-sheets.js` y se cambia una línea en `api.js`.
+**Regla:** las páginas nunca tocan el almacén, siempre pasan por `api.js`. Con `CONFIG.servidor` lleno, `api.js` usa `servidor.js` (Google Sheet); vacío, usa `almacen-local.js` (modo prueba).
 
 ### Modelo de datos
 - **Casilleros:** `id` (`7B`), `bloque`, `numero`, `habilitado`. El **estado no se guarda**: se calcula de los alquileres.
@@ -139,7 +139,7 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
 - [ ] Lista actual de ocupantes (la tiene el secretario de Logística).
 - [ ] Fotos de los casilleros (arriba/abajo, numeración real).
-- [ ] Fechas del periodo de alquiler, del plazo de renovación y del fin de ciclo (`CONFIG.finDeCiclo`, hoy `2026-12-20` provisional).
+- [ ] Fechas del periodo de alquiler y del plazo de renovación (se abren/cierran con la casilla *Periodo de alquiler abierto* de la hoja).
 - [ ] Qué casilleros exactos son del CCOA.
 - [ ] ¿Pueden alquilar alumnos de otras facultades?
 - [ ] Correos de Logística para el panel (por ahora solo el de Paolo).
@@ -164,3 +164,4 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - **2026-10-08:** prototipo completo (página pública + panel + documentación). Rediseño con identidad del CCOA (mascota, Bebas Neue, sin degradados). Decididos precio S/ 14, Yape, 48 h, condiciones, prioridad de renovación. Carpeta reorganizada (`sitio/`, `docs/`, `material/`). Preparada la publicación en GitHub; Git y GitHub CLI instalados.
 - **2026-10-08 (tarde):** sesión de GitHub lista (grampass). Escrito el backend en Apps Script; la Google Sheet reemplaza al panel de Logística (casillas Ocupado/Pagó/Inhabilitado, historial con ciclo, nuevo ciclo con prioridad). Página conectable al servidor (`CONFIG.servidor`), aviso de periodo cerrado, mascotas saltando y portapapeles.
 - **2026-10-08 (noche):** Google Sheet instalada en el Gmail personal de Paolo y probada (reserva, correo, WhatsApp). QR de Yape añadido. Condiciones sin citar la ley. **Publicado** en https://grampass.github.io/casilleros/ conectado a la hoja real.
+- **2026-10-09:** pie de página con logo, Facebook y canal de WhatsApp; panel de demostración fuera de la página publicada; mantenimiento (ajustes y estilos sin uso eliminados, notas de docs/ actualizadas al estado real).

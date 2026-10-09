@@ -1,9 +1,8 @@
 // ─────────────────────────────────────────────────────────────
-// ALMACÉN LOCAL (solo para el prototipo)
+// ALMACÉN LOCAL (modo prueba y ?demo)
 // Guarda todo en el navegador (localStorage). Sirve para probar
-// la página sin servidor. En la versión real se reemplaza por
-// almacen-sheets.js (Google Sheets + Apps Script) sin tocar las
-// pantallas: ambos exponen las mismas dos funciones.
+// la página sin servidor y para el panel de demostración.
+// La versión real usa servidor.js (Google Sheet).
 // ─────────────────────────────────────────────────────────────
 
 import { generarCasilleros } from '../logica/reglas.js';

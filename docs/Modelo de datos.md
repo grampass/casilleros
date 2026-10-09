@@ -1,6 +1,9 @@
 # Modelo de datos
 
-Volver a [[00 Inicio]]. En la versión real, cada tabla será una hoja del Google Sheet.
+Volver a [[00 Inicio]].
+
+> **Versión real (Google Sheet):** el modelo es más simple y está descrito en [[Instalar la hoja]] y en `CONTEXTO.md` §7: pestaña *Casilleros* (una fila por casillero con casillas Ocupado/Pagó/Inhabilitado), *Historial* (con ciclo) y *Configuración*.
+> Lo de abajo es el modelo del **modo prueba** (`almacen-local.js`, panel de demostración).
 
 ## Casilleros
 | Campo | Ejemplo | Nota |

@@ -18,7 +18,7 @@ export function limpiarCodigo(codigo) {
   return String(codigo || '').replace(/\s+/g, '').toUpperCase();
 }
 
-export function validarSolicitud(datos) {
+function validarSolicitud(datos) {
   const errores = {};
   if (!datos.apellidos?.trim()) errores.apellidos = 'Escribe tus apellidos.';
   if (!datos.nombres?.trim())   errores.nombres = 'Escribe tus nombres.';

@@ -11,12 +11,8 @@ export const CONFIG = {
   // de la pestaña "Configuración" de la Google Sheet.
   servidor: 'https://script.google.com/macros/s/AKfycbzbpctkLZsxTA5G9uOx16sUrQOxG-j9rdlO7wbwpMS0lL7KBi0qvh2Y2D7i_5kBW_7YSA/exec',
 
-  centro: 'Centro Cultural Óscar Almenara',
-  siglas: 'CCOA',
-
-  // Ciclo vigente: los alquileres duran todo el ciclo.
+  // Ciclo vigente (solo modo prueba; con servidor lo manda la hoja).
   ciclo: '2026-2',
-  finDeCiclo: '2026-12-20', // fecha en que vencen todos los alquileres
 
   // WhatsApp de Logística (con código de país 51, sin + ni espacios).
   whatsapp: '51966378397',

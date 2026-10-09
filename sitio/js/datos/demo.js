@@ -21,7 +21,7 @@ const EJEMPLOS = [
   ['18B', 'Vargas Ruiz',    'Sofía',    '20239999J', '999999991', true],
 ];
 
-export async function cargarDemo() {
+async function cargarDemo() {
   await api.reiniciarPrototipo();
   for (const [id, apellidos, nombres, codigo, celular, pagado] of EJEMPLOS) {
     await api.asignar(id, { apellidos, nombres, codigo, celular }, { pagado, monto: CONFIG.precio ?? 0, medio: 'Yape' }, 'Franco');

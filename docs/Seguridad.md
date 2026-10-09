@@ -1,30 +1,29 @@
-# Seguridad (versión real)
+# Seguridad
 
 Volver a [[00 Inicio]].
 
-> El prototipo **no es seguro**: guarda todo en el navegador y el panel no pide contraseña. Sirve solo para mostrar la idea.
-
-## Propuesta: Google Sheets + Google Apps Script (gratis, sin dominio)
-
 ```
-Alumno ──▶ Página pública ──▶ Apps Script (servidor) ──▶ Google Sheet privado
-Logística ─▶ Panel (con cuenta Google) ──┘
+Alumno ──▶ Página (GitHub Pages) ──▶ Apps Script ──▶ Google Sheet privada
+                                                        ▲
+                               Logística edita directo ─┘
 ```
 
-1. **La base de datos es un Google Sheet de una cuenta Gmail del CCOA** (no de una persona), para que pase de directiva en directiva.
-2. **El Sheet no se comparte con el público.** Nadie lo abre directamente; solo el servidor (Apps Script) lee y escribe.
-3. **La página pública solo puede hacer dos cosas:**
-   - pedir el mapa → recibe únicamente `id` y `estado`, **nunca nombres ni celulares**;
-   - reservar → el servidor **vuelve a validar todo** (la validación de la página es solo comodidad; se puede saltar).
-4. **Dos personas a la vez:** el servidor usa `LockService` para que, si dos alumnos tocan el mismo casillero al mismo tiempo, solo uno lo consiga.
-5. **El panel de Logística exige iniciar sesión con Google.**
-   - Solo entran los correos de una **lista blanca** (los de Logística), guardada en la configuración del script, no en la página.
-   - Detalle técnico a confirmar al construir: con cuentas `@gmail.com`, Apps Script solo identifica al usuario si el panel se publica como "ejecutar como el usuario que accede", y eso obliga a compartir el Sheet con esos correos. Como son de Logística, es aceptable; el resto sigue sin acceso.
-6. **Bitácora:** cada acción guarda quién la hizo. Si alguien "mete la mano", queda registrado.
-7. **Abuso:** límite de reservas por código y por celular, y caducidad automática de reservas no pagadas.
-8. **Datos personales (Ley 29733, Perú):** añadir una casilla "Acepto que el CCOA use mis datos solo para gestionar el casillero" y borrar o anonimizar los datos de ciclos antiguos.
+## Cómo está protegido hoy
+1. **La hoja no se comparte con el público.** Solo la abren las cuentas que Paolo invite (Compartir → Editor). Nadie más puede ver nombres ni celulares.
+2. **La página solo puede hacer dos cosas** a través de Apps Script:
+   - pedir el mapa → recibe únicamente `id` y `estado` de cada casillero;
+   - reservar → el servidor **vuelve a validar todo** (la validación de la página es solo comodidad).
+3. **Dos alumnos a la vez:** cada reserva usa `LockService`, así que solo uno consigue el casillero.
+4. **Uno por persona** por código UNI **y** por celular.
+5. **Robots:** campo invisible en el formulario; si viene lleno, se rechaza.
+6. **Historial:** cada reserva, pago, liberación y vencimiento queda anotado con ciclo y quién lo hizo. Si algo se borra por error: Archivo → Historial de versiones.
+7. **Datos personales:** el alumno acepta las condiciones antes de reservar; los datos solo los ve Logística.
+8. El repositorio de GitHub es público, pero **no contiene datos de alumnos** ni el correo de aviso (ese vive en la pestaña Configuración de la hoja).
+
+## Riesgo conocido
+Alguien podría inventar códigos y apartar varios casilleros por 48 h. Se resuelve desmarcando *Ocupado* en la hoja. Si pasa seguido: limitar reservas por hora en `servidor/Codigo.gs`.
 
 ## Alternativa si crece
-Vercel (hosting gratis) + Supabase (base de datos con inicio de sesión y permisos por fila). Más potente, pero requiere alguien que lo mantenga.
+Vercel + Supabase (base de datos con inicio de sesión y permisos por fila). Más potente, pero requiere alguien que lo mantenga.
 
-Ver [[Decisiones pendientes]].
+Ver [[Instalar la hoja]].

@@ -255,7 +255,6 @@ td { padding: 8px; border-bottom: 1px solid var(--borde); white-space: nowrap; }
 @media (max-width: 520px) {
   .barra__logo { height: 42px; }
   .barra__sub { display: none; }
-  .firma { font-size: .7rem; }
   .portada__mascota { width: 110px; }
   .portada__texto { padding-bottom: 20px; }
   .barra .boton { padding: 8px 12px; font-size: .85rem; }

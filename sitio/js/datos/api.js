@@ -19,7 +19,7 @@ import * as almacen from './almacen-local.js';
 import * as servidor from './servidor.js';
 
 // Se decide al cargar (antes de que demo.js limpie la dirección).
-export const REMOTO = Boolean(CONFIG.servidor) && !new URLSearchParams(location.search).has('demo');
+const REMOTO = Boolean(CONFIG.servidor) && !new URLSearchParams(location.search).has('demo');
 import {
   validarReserva, yaTieneCasillero, reservaVencida,
   calcularVenceReserva, limpiarCodigo,
