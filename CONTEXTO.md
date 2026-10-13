@@ -133,13 +133,13 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 ## 9. Pendientes
 **De Paolo:**
 - [x] `gh auth login` con token (cuenta grampass) ✔. Repositorio público creado y página publicada ✔.
-- [ ] Volver a pegar `servidor/Codigo.gs` en Apps Script y crear una **nueva versión** de la implementación (incluye el arreglo del ciclo como fecha). No urgente: el ciclo ya se corrigió a mano en la hoja.
+- [x] Arreglo del ciclo como fecha cargado en Apps Script ✔.
 - [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
 - [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
 - [ ] Lista actual de ocupantes (la tiene el secretario de Logística).
 - [x] Fotos de los casilleros: disposición confirmada ✔. Se agregó el bloque C.
-- [ ] Pegar el nuevo `servidor/Codigo.gs` en Apps Script, correr **Configurar hoja** (agrega 1C–20C) y crear **nueva versión** de la implementación.
+- [x] Código del servidor actualizado en Apps Script (bloque C, 60 casilleros) y nueva versión publicada ✔.
 - [ ] Fechas del periodo de alquiler y del plazo de renovación (se abren/cierran con la casilla *Periodo de alquiler abierto* de la hoja).
 - [ ] Qué casilleros exactos son del CCOA.
 - [ ] ¿Pueden alquilar alumnos de otras facultades?

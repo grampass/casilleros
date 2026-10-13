@@ -11,7 +11,7 @@ Volver a [[00 Inicio]]. Estado al 2026-10-09: **publicado y funcionando** en htt
 
 ## Pendiente (de Paolo)
 - [x] Fotos de los casilleros → disposición confirmada; bloque C agregado. Ver [[Levantamiento]].
-- [ ] Actualizar el código de la hoja para que tenga 1C–20C (ver [[Instalar la hoja]]).
+- [x] Código de la hoja actualizado: 1C–20C ✔.
 - [ ] Lista actual de ocupantes para cargarla en la hoja.
 - [ ] Qué casilleros exactos son del CCOA (se marcan *Inhabilitado*).
 - [ ] Compartir la hoja con otro miembro de Logística (Compartir → Editor).
