@@ -49,9 +49,9 @@ Página web para que la **Secretaría de Logística** del **Centro Cultural Ósc
 (Paolo prefirió no citar la Ley 29733 en el texto; la casilla "Acepto las condiciones" se mantiene, que es el consentimiento que pide esa ley.)
 
 ## 4. Casilleros (disposición)
-- **Bloque A:** dentro del CCOA, 1A–20A. **Bloque B:** fuera del CCOA, 1B–20B.
-- Hoy se dibujan como **5 columnas × 4 filas**, numerados por filas (provisional, aceptado por Paolo).
-- Pendiente: Paolo enviará fotos para saber qué fila está arriba y cuál abajo, y el orden real de numeración.
+- **Bloque A:** dentro del CCOA, 1A–20A. **Bloque B:** fuera del CCOA, 1B–20B. **Bloque C:** dentro del CCOA, 1C–20C (agregado 2026-10-12). Total: 60.
+- **Confirmado con fotos** (`material/A.jpeg`, `B.jpeg`, `C.jpeg`): cada bloque es **5 columnas × 4 filas**, numerado de izquierda a derecha y fila por fila; el **1 está arriba a la izquierda** y 16–20 es la fila del piso. El mapa ya los dibuja así.
+- En el bloque C faltan etiquetas físicas en 7C, 10C, 14C y 16C–20C (se deducen por la posición).
 - El Excel `material/Casilleros 2026-1 (antiguo).xlsx` está **desactualizado**: solo sirve para la disposición, no para los ocupantes.
 
 ## 5. Estado técnico actual
@@ -138,7 +138,8 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
 - [ ] Lista actual de ocupantes (la tiene el secretario de Logística).
-- [ ] Fotos de los casilleros (arriba/abajo, numeración real).
+- [x] Fotos de los casilleros: disposición confirmada ✔. Se agregó el bloque C.
+- [ ] Pegar el nuevo `servidor/Codigo.gs` en Apps Script, correr **Configurar hoja** (agrega 1C–20C) y crear **nueva versión** de la implementación.
 - [ ] Fechas del periodo de alquiler y del plazo de renovación (se abren/cierran con la casilla *Periodo de alquiler abierto* de la hoja).
 - [ ] Qué casilleros exactos son del CCOA.
 - [ ] ¿Pueden alquilar alumnos de otras facultades?
@@ -147,7 +148,7 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 **Técnicos:**
 - [x] Publicar en GitHub Pages ✔.
 - [x] Backend Google Sheets + Apps Script escrito (sección 7); falta probarlo con la hoja real.
-- [ ] Indicar en el mapa qué fila está arriba/abajo.
+- [x] Disposición real del mapa (arriba/abajo) ✔.
 - [x] Abrir/cerrar periodo de alquiler (casilla en Configuración).
 - [ ] Guía corta de uso para Logística.
 
@@ -165,3 +166,4 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - **2026-10-08 (tarde):** sesión de GitHub lista (grampass). Escrito el backend en Apps Script; la Google Sheet reemplaza al panel de Logística (casillas Ocupado/Pagó/Inhabilitado, historial con ciclo, nuevo ciclo con prioridad). Página conectable al servidor (`CONFIG.servidor`), aviso de periodo cerrado, mascotas saltando y portapapeles.
 - **2026-10-08 (noche):** Google Sheet instalada en el Gmail personal de Paolo y probada (reserva, correo, WhatsApp). QR de Yape añadido. Condiciones sin citar la ley. **Publicado** en https://grampass.github.io/casilleros/ conectado a la hoja real.
 - **2026-10-09:** pie de página con logo, Facebook y canal de WhatsApp; panel de demostración fuera de la página publicada; mantenimiento (ajustes y estilos sin uso eliminados, notas de docs/ actualizadas al estado real).
+- **2026-10-12:** disposición confirmada con fotos (5×4, 1 arriba a la izquierda, por filas). Agregado el **bloque C** (dentro del CCOA, 1C–20C) en la página y en el servidor; *Configurar hoja* ahora agrega los casilleros que falten.

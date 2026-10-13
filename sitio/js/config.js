@@ -59,5 +59,6 @@ export const CONFIG = {
   bloques: [
     { id: 'A', nombre: 'Dentro del CCOA', columnas: 5, filas: 4, orden: 'filas' },
     { id: 'B', nombre: 'Fuera del CCOA',  columnas: 5, filas: 4, orden: 'filas' },
+    { id: 'C', nombre: 'Dentro del CCOA', columnas: 5, filas: 4, orden: 'filas' },
   ],
 };

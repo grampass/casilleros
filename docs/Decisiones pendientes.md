@@ -11,11 +11,10 @@ Volver a [[00 Inicio]]. Ver también [[Puesta en marcha]].
 - [x] **La Google Sheet es el panel de Logística** (no hay panel web con inicio de sesión).
 - [x] Hoja en el **Gmail personal** de Paolo; avisos a su correo institucional.
 - [x] Condiciones sin citar la Ley 29733; se mantiene la casilla "Acepto las condiciones".
-- [x] Disposición 5×4 por bloque hasta tener fotos.
 - [x] Identidad: naranja + morado, logo, mascota, Bebas Neue + DM Sans.
 
 ## Por definir
-- [ ] Qué fila está **arriba** y cuál **abajo**, y numeración real → con las fotos ([[Levantamiento]]).
+- [x] Disposición confirmada con fotos: 5×4 por bloque, 1 arriba a la izquierda, numeración por filas. Hay **tres bloques**: A y C dentro del CCOA, B fuera.
 - [ ] Qué casilleros exactos son del CCOA.
 - [ ] ¿Pueden alquilar alumnos de otras facultades? (en el Excel antiguo aparecía "Otra facu").
 - [ ] Fechas del periodo de alquiler y del plazo de renovación (se abren/cierran con la casilla de la hoja).

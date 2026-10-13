@@ -2,7 +2,9 @@
 
 Volver a [[00 Inicio]]. Lo que hay que anotar para que el mapa sea igual al real.
 
-## Por bloque (A: dentro del CCOA · B: fuera)
+> **Hecho (2026-10-12)** con las fotos `material/A.jpeg`, `B.jpeg`, `C.jpeg`: tres bloques de 5×4, numerados por filas, el 1 arriba a la izquierda. En el C faltan etiquetas en 7C, 10C, 14C y 16C–20C.
+
+## Por bloque (A y C: dentro del CCOA · B: fuera)
 - [ ] Cuántas **columnas** (a lo largo) y cuántas **filas** (a lo alto).
 - [ ] Cómo va la numeración: ¿1, 2, 3… de izquierda a derecha por fila, o de arriba abajo por columna?
 - [ ] ¿Hay casilleros de distinto tamaño?

@@ -24,6 +24,12 @@ La Google Sheet es **la base de datos y el panel de Logística**. Por ahora vive
 ## Si se cambia el código del servidor después
 **Implementar → Gestionar implementaciones → lápiz → Versión: Nueva versión → Implementar.** La URL no cambia.
 
+## Si se agregan casilleros (por ejemplo, el bloque C)
+1. Agregar el bloque en `servidor/Codigo.gs` → `BLOQUES` y en `sitio/js/config.js` → `bloques`.
+2. Pegar el nuevo código en Apps Script y guardar.
+3. En la hoja: **Casilleros CCOA → 1. Configurar hoja** → *Sí*. Agrega al final las filas que falten sin tocar las existentes.
+4. Crear una **nueva versión** de la implementación (ver arriba).
+
 ## Uso diario (Logística)
 | Quiero… | En la pestaña Casilleros |
 |---|---|

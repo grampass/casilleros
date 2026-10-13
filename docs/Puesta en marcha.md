@@ -10,7 +10,8 @@ Volver a [[00 Inicio]]. Estado al 2026-10-09: **publicado y funcionando** en htt
 - Publicación automática en GitHub Pages (`.github/workflows/pagina.yml`; publica `sitio/` sin el panel de demostración).
 
 ## Pendiente (de Paolo)
-- [ ] Fotos de los casilleros → qué fila está arriba/abajo y numeración real. Ver [[Levantamiento]].
+- [x] Fotos de los casilleros → disposición confirmada; bloque C agregado. Ver [[Levantamiento]].
+- [ ] Actualizar el código de la hoja para que tenga 1C–20C (ver [[Instalar la hoja]]).
 - [ ] Lista actual de ocupantes para cargarla en la hoja.
 - [ ] Qué casilleros exactos son del CCOA (se marcan *Inhabilitado*).
 - [ ] Compartir la hoja con otro miembro de Logística (Compartir → Editor).

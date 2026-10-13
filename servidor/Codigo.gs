@@ -27,6 +27,7 @@ const HISTORIAL = ['Fecha', 'Ciclo', 'Casillero', 'Acción', 'Apellidos', 'Nombr
 const BLOQUES = [
   { id: 'A', total: 20, nombre: 'Dentro del CCOA' },
   { id: 'B', total: 20, nombre: 'Fuera del CCOA' },
+  { id: 'C', total: 20, nombre: 'Dentro del CCOA' },
 ];
 
 // Ajustes de la pestaña Configuración: [texto en la hoja, valor inicial, explicación]
@@ -56,7 +57,7 @@ function configurar() {
 
   if (libro.getSheetByName(HOJAS.casilleros)) {
     const r = ui.alert('La hoja ya está configurada',
-      '¿Volver a aplicar formatos y avisos? No se borra ningún dato.', ui.ButtonSet.YES_NO);
+      '¿Volver a aplicar formatos y agregar los casilleros que falten? No se borra ningún dato.', ui.ButtonSet.YES_NO);
     if (r !== ui.Button.YES) return;
   }
 
@@ -82,10 +83,15 @@ function configurar() {
   if (!hoja) {
     hoja = libro.insertSheet(HOJAS.casilleros, 0);
     hoja.getRange(1, 1, 1, ENCABEZADOS.length).setValues([ENCABEZADOS]);
-    const filas = [];
-    BLOQUES.forEach(b => { for (let n = 1; n <= b.total; n++) filas.push([n + b.id, b.id, false, false, false, '', '', '', '', '', '']); });
-    hoja.getRange(2, 1, filas.length, ENCABEZADOS.length).setValues(filas);
   }
+  // Agrega al final los casilleros que falten (por ejemplo, un bloque nuevo). No toca los existentes.
+  const existentes = hoja.getLastRow() > 1
+    ? hoja.getRange(2, 1, hoja.getLastRow() - 1, 1).getValues().map(v => String(v[0])) : [];
+  const nuevas = [];
+  BLOQUES.forEach(b => { for (let k = 1; k <= b.total; k++) {
+    if (!existentes.includes(k + b.id)) nuevas.push([k + b.id, b.id, false, false, false, '', '', '', '', '', '']);
+  } });
+  if (nuevas.length) hoja.getRange(hoja.getLastRow() + 1, 1, nuevas.length, ENCABEZADOS.length).setValues(nuevas);
   const n = totalCasilleros_();
   hoja.getRange(2, C.ocupado, n, 3).insertCheckboxes();
   hoja.getRange(2, C.codigo, n, 2).setNumberFormat('@');           // código y celular como texto
@@ -314,7 +320,8 @@ function totalCasilleros_() { return BLOQUES.reduce((s, b) => s + b.total, 0); }
 function leerFilas_() {
   const n = totalCasilleros_();
   return hojaCasilleros_().getRange(2, 1, n, ENCABEZADOS.length).getValues()
-    .map((v, i) => filaDesdeValores_(i + 2, v));
+    .map((v, i) => filaDesdeValores_(i + 2, v))
+    .filter(f => f.casillero);   // ignora filas vacías si aún no se corrió "Configurar hoja"
 }
 
 function filaDesdeValores_(fila, v) {
