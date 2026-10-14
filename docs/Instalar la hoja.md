@@ -30,6 +30,15 @@ La Google Sheet es **la base de datos y el panel de Logística**. Por ahora vive
 3. En la hoja: **Casilleros CCOA → 1. Configurar hoja** → *Sí*. Agrega al final las filas que falten sin tocar las existentes.
 4. Crear una **nueva versión** de la implementación (ver arriba).
 
+## Importar una lista de ocupantes (por ejemplo, desde un Excel)
+1. Menú **Casilleros CCOA → Importar ocupantes…**. La primera vez crea la pestaña **Importar** con los títulos.
+2. Pegar en **A1** la lista con columnas `Casillero | Apellidos | Nombres | Código UNI | Celular | Estado | Notas`.
+   - **Estado:** `OCUPADO` (ocupado y pagado), `POR PAGAR` u `CCOA` (queda *Inhabilitado*).
+3. Volver a usar el menú → *Sí*. Solo cambia los casilleros de la lista; cada uno queda en el Historial como *Carga inicial*.
+4. Borrar la pestaña Importar.
+
+La lista con datos de alumnos **no se guarda en el repositorio** (es público): va en `CCOA/material/`.
+
 ## Uso diario (Logística)
 | Quiero… | En la pestaña Casilleros |
 |---|---|

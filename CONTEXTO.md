@@ -137,7 +137,8 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
 - [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
-- [ ] Lista actual de ocupantes (la tiene el secretario de Logística).
+- [x] Lista actual de ocupantes recibida: `material/Casilleros 2026-2 Actualizado.xlsx` → convertida a `material/Importar ocupantes 2026-2 (pegar en la hoja).tsv` (32 ocupados + 5 del CCOA: 15A, 18A, 19A, 20A, 1B). **Falta que Paolo la cargue** con el menú *Importar ocupantes…*.
+- [ ] Revisar en la lista (detalles en el archivo de `material/`, no aquí): 1A y 2A sin nombre completo ni código; una misma persona aparece en 14B y 15B; nadie tiene celular.
 - [x] Fotos de los casilleros: disposición confirmada ✔. Se agregó el bloque C.
 - [x] Código del servidor actualizado en Apps Script (bloque C, 60 casilleros) y nueva versión publicada ✔.
 - [ ] Fechas del periodo de alquiler y del plazo de renovación (se abren/cierran con la casilla *Periodo de alquiler abierto* de la hoja).
@@ -167,3 +168,4 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - **2026-10-08 (noche):** Google Sheet instalada en el Gmail personal de Paolo y probada (reserva, correo, WhatsApp). QR de Yape añadido. Condiciones sin citar la ley. **Publicado** en https://grampass.github.io/casilleros/ conectado a la hoja real.
 - **2026-10-09:** pie de página con logo, Facebook y canal de WhatsApp; panel de demostración fuera de la página publicada; mantenimiento (ajustes y estilos sin uso eliminados, notas de docs/ actualizadas al estado real).
 - **2026-10-12:** disposición confirmada con fotos (5×4, 1 arriba a la izquierda, por filas). Agregado el **bloque C** (dentro del CCOA, 1C–20C) en la página y en el servidor; *Configurar hoja* ahora agrega los casilleros que falten.
+- **2026-10-13:** menú *Importar ocupantes…* en la hoja (pestaña Importar → carga con historial). Lista 2026-2 preparada en `material/` (no se sube: datos personales).

@@ -47,6 +47,8 @@ function onOpen() {
     .addSeparator()
     .addItem('Empezar nuevo ciclo…', 'nuevoCiclo')
     .addItem('Liberar reservas vencidas ahora', 'vencerReservasMenu')
+    .addSeparator()
+    .addItem('Importar ocupantes (pestaña Importar)…', 'importarOcupantes')
     .addToUi();
 }
 
@@ -249,6 +251,69 @@ function vencerReservas() {
   const candado = LockService.getScriptLock();
   candado.waitLock(30000);
   try { vencer_(); } finally { candado.releaseLock(); }
+}
+
+// ── Importar una lista de ocupantes (por ejemplo, desde el Excel) ──
+// Pestaña "Importar": Casillero | Apellidos | Nombres | Código UNI | Celular | Estado | Notas
+// Estado: OCUPADO (ocupado y pagado), POR PAGAR (ocupado sin pagar) o CCOA (inhabilitado).
+// Solo cambia los casilleros que estén en la lista; cada uno queda en el Historial.
+const IMPORTAR = 'Importar';
+const COLUMNAS_IMPORTAR = ['Casillero', 'Apellidos', 'Nombres', 'Código UNI', 'Celular', 'Estado', 'Notas'];
+
+function importarOcupantes() {
+  const ui = SpreadsheetApp.getUi();
+  const libro = SpreadsheetApp.getActive();
+  let hojaImp = libro.getSheetByName(IMPORTAR);
+  if (!hojaImp || hojaImp.getLastRow() < 2) {
+    if (!hojaImp) hojaImp = libro.insertSheet(IMPORTAR);
+    hojaImp.getRange(1, 1, 1, COLUMNAS_IMPORTAR.length).setValues([COLUMNAS_IMPORTAR]).setFontWeight('bold');
+    hojaImp.getRange('A:G').setNumberFormat('@');
+    hojaImp.activate();
+    ui.alert('Pestaña Importar lista',
+      'Pega la lista desde la celda A1 (con títulos) y vuelve a usar este menú.', ui.ButtonSet.OK);
+    return;
+  }
+
+  const filasImp = hojaImp.getRange(2, 1, hojaImp.getLastRow() - 1, COLUMNAS_IMPORTAR.length).getValues()
+    .filter(v => String(v[0]).trim());
+  const ok = ui.alert('Importar ocupantes',
+    `Se cargarán ${filasImp.length} casilleros. Los que estén en la lista se sobrescriben; los demás no se tocan.\n¿Continuar?`,
+    ui.ButtonSet.YES_NO);
+  if (ok !== ui.Button.YES) return;
+
+  const candado = LockService.getScriptLock();
+  candado.waitLock(30000);
+  const errores = [];
+  let cargados = 0;
+  try {
+    const hoja = hojaCasilleros_();
+    const porId = {};
+    leerFilas_().forEach(f => { porId[f.casillero] = f; });
+    filasImp.forEach(v => {
+      const id = String(v[0]).trim().toUpperCase();
+      const f = porId[id];
+      if (!f) { errores.push(`${id}: no existe`); return; }
+      const estado = String(v[5]).trim().toUpperCase();
+      const d = {
+        apellidos: texto_(v[1]), nombres: texto_(v[2]),
+        codigo: String(v[3]).replace(/\s+/g, '').toUpperCase(), celular: String(v[4]).replace(/\D/g, ''),
+      };
+      const notas = texto_(v[6]);
+      let valores;
+      if (estado === 'CCOA') valores = [false, false, true, '', '', '', '', '', notas || 'Uso del CCOA'];
+      else if (estado === 'OCUPADO' || estado === 'POR PAGAR')
+        valores = [true, estado === 'OCUPADO', false, d.apellidos, d.nombres, d.codigo, d.celular, '', notas];
+      else { errores.push(`${id}: estado "${v[5]}" no reconocido`); return; }
+      hoja.getRange(f.fila, C.ocupado, 1, 9).setValues([valores]);
+      registrar_('Carga inicial', id, estado === 'CCOA' ? {} : d, 'Logística (importación)', [estado, notas].filter(Boolean).join(' · '));
+      cargados++;
+    });
+  } finally {
+    candado.releaseLock();
+  }
+  ui.alert('Importación terminada',
+    `Casilleros cargados: ${cargados}.` + (errores.length ? `\n\nNo cargados:\n${errores.join('\n')}` : '') +
+    '\n\nYa puedes borrar la pestaña Importar.', ui.ButtonSet.OK);
 }
 
 function vencerReservasMenu() {

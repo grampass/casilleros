@@ -12,7 +12,7 @@ Volver a [[00 Inicio]]. Estado al 2026-10-09: **publicado y funcionando** en htt
 ## Pendiente (de Paolo)
 - [x] Fotos de los casilleros → disposición confirmada; bloque C agregado. Ver [[Levantamiento]].
 - [x] Código de la hoja actualizado: 1C–20C ✔.
-- [ ] Lista actual de ocupantes para cargarla en la hoja.
+- [ ] Cargar la lista de ocupantes 2026-2 con *Importar ocupantes…* (archivo en `material/`).
 - [ ] Qué casilleros exactos son del CCOA (se marcan *Inhabilitado*).
 - [ ] Compartir la hoja con otro miembro de Logística (Compartir → Editor).
 - [ ] Mascotas en mejor calidad (PNG ≥ 500 px).
