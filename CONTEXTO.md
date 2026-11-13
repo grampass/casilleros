@@ -113,9 +113,10 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 ## 7. Backend: Google Sheets + Apps Script (`servidor/Codigo.gs`)
 - **Dónde vive:** Google Sheet en el **Gmail personal de Paolo** (pruebas y arranque); después se copia a una cuenta del CCOA. Avisos de reserva al correo institucional de Paolo (se escribe en la pestaña Configuración, no en el código).
 - **La hoja es la base de datos y el panel de Logística.** Pestañas:
-  - **Casilleros:** una fila por casillero: `Casillero | Bloque | Ocupado ☑ | Pagó ☑ | Inhabilitado ☑ | Apellidos | Nombres | Código UNI | Celular | Reservado el | Notas`. La hoja **manda** sobre el estado: inhabilitado > ocupado+pagó = ocupado > ocupado sin pagó = reservado > libre. Colores automáticos.
+  - **Casilleros:** una fila por casillero: `Casillero | Bloque | Ocupado ☑ | Pagó ☑ | Inhabilitado ☑ | Apellidos | Nombres | Código UNI | Celular | Reservado el | Notas | Pagó el | WhatsApp`. *Pagó el* se llena solo al marcar Pagó; *WhatsApp* es un enlace «Escribir» al alumno (fórmula, mensaje en `MENSAJE_WHATSAPP`). La hoja **manda** sobre el estado: inhabilitado > ocupado+pagó = ocupado > ocupado sin pagó = reservado > libre. Colores automáticos.
   - **Historial:** `Fecha | Ciclo | Casillero | Acción | Apellidos | Nombres | Código UNI | Celular | Por | Detalle`. Se llena solo (reservas de la página, ediciones a mano vía `onEdit`, vencimientos, fin de ciclo). Nunca se borra; tiene filtro y se exporta con Archivo → Descargar.
-  - **Configuración:** ciclo, precio, horas para pagar, periodo abierto (casilla), correo de aviso, uno por persona.
+  - **Configuración:** ciclo, precio, horas para pagar, periodo abierto (casilla), correo de aviso, uno por persona, **Yape: a nombre de** y **Yape: número** (la página los toma de aquí; `config.js` → `yape` queda como respaldo).
+  - **Protecciones:** solo el dueño edita el Historial, los títulos y las columnas Casillero, Bloque y WhatsApp. Las ediciones se registran con el disparador instalable `alEditar` (corre como el dueño).
 - **Comportamiento:** desmarcar *Ocupado* libera (la fila se limpia y queda en el Historial). Marcar *Pagó* confirma. Reservas de la página vencen a las *Horas para pagar* (disparador cada hora + revisión en cada visita); filas sin *Reservado el* (alquiler a mano o renovación) nunca vencen.
 - **Seguridad:** la hoja no se comparte; la página solo recibe `id`/`estado`; el servidor revalida todo, usa `LockService`, controla uno por persona por código **y** celular, y tiene un campo trampa contra robots.
 - **Nuevo ciclo** (menú *Casilleros CCOA*): anota "Fin de ciclo" de cada ocupado, desmarca Pagó, deja la fila apartada para su dueño (prioridad de renovación), cambia el ciclo y cierra el periodo.
@@ -138,7 +139,7 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
 - [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
-- [x] Lista actual de ocupantes recibida: `material/Casilleros 2026-2 Actualizado.xlsx` → convertida a `material/Importar ocupantes 2026-2 (pegar en la hoja).tsv` (32 ocupados + 5 del CCOA: 15A, 18A, 19A, 20A, 1B). **Falta que Paolo la cargue** con el menú *Importar ocupantes…*.
+- [x] Lista actual de ocupantes recibida: `material/Casilleros 2026-2 Actualizado.xlsx` → convertida a `material/Importar ocupantes 2026-2 (pegar en la hoja).tsv` (32 ocupados + 5 del CCOA: 15A, 18A, 19A, 20A, 1B). Cargada ✔.
 - [ ] Revisar en la lista (detalles en el archivo de `material/`, no aquí): 1A y 2A sin nombre completo ni código; una misma persona aparece en 14B y 15B; nadie tiene celular.
 - [x] Fotos de los casilleros: disposición confirmada ✔. Se agregó el bloque C.
 - [x] Código del servidor actualizado en Apps Script (bloque C, 60 casilleros) y nueva versión publicada ✔.
@@ -169,5 +170,6 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - **2026-10-08 (noche):** Google Sheet instalada en el Gmail personal de Paolo y probada (reserva, correo, WhatsApp). QR de Yape añadido. Condiciones sin citar la ley. **Publicado** en https://grampass.github.io/casilleros/ conectado a la hoja real.
 - **2026-10-09:** pie de página con logo, Facebook y canal de WhatsApp; panel de demostración fuera de la página publicada; mantenimiento (ajustes y estilos sin uso eliminados, notas de docs/ actualizadas al estado real).
 - **2026-10-12:** disposición confirmada con fotos (5×4, 1 arriba a la izquierda, por filas). Agregado el **bloque C** (dentro del CCOA, 1C–20C) en la página y en el servidor; *Configurar hoja* ahora agrega los casilleros que falten.
-- **2026-10-13:** menú *Importar ocupantes…* en la hoja (pestaña Importar → carga con historial). Lista 2026-2 preparada en `material/` (no se sube: datos personales).
+- **2026-10-13:** menú *Importar ocupantes…* en la hoja (quitado el 2026-11-12, ya no se necesita) (pestaña Importar → carga con historial). Lista 2026-2 preparada en `material/` (no se sube: datos personales).
 - **2026-11-12:** el Yape pasa a la cuenta del Secretario de Economía (QR nuevo, 969 058 688); la captura sigue yendo al WhatsApp de Logística. Guía PDF y presentación de uso para el equipo.
+- **2026-11-12 (noche):** script de la hoja limpio: sin *Importar*; columnas *Pagó el* y *WhatsApp* («Escribir»); Yape (titular y número) editable en Configuración; Historial y columnas fijas protegidas; registro de ediciones con disparador instalable `alEditar`.

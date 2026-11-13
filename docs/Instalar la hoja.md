@@ -30,23 +30,20 @@ La Google Sheet es **la base de datos y el panel de Logística**. Por ahora vive
 3. En la hoja: **Casilleros CCOA → 1. Configurar hoja** → *Sí*. Agrega al final las filas que falten sin tocar las existentes.
 4. Crear una **nueva versión** de la implementación (ver arriba).
 
-## Importar una lista de ocupantes (por ejemplo, desde un Excel)
-1. Menú **Casilleros CCOA → Importar ocupantes…**. La primera vez crea la pestaña **Importar** con los títulos.
-2. Pegar en **A1** la lista con columnas `Casillero | Apellidos | Nombres | Código UNI | Celular | Estado | Notas`.
-   - **Estado:** `OCUPADO` (ocupado y pagado), `POR PAGAR` u `CCOA` (queda *Inhabilitado*).
-3. Volver a usar el menú → *Sí*. Solo cambia los casilleros de la lista; cada uno queda en el Historial como *Carga inicial*.
-4. Borrar la pestaña Importar.
-
-La lista con datos de alumnos **no se guarda en el repositorio** (es público): va en `CCOA/material/`.
+## Protecciones
+*Configurar hoja* deja **solo al dueño** de la hoja editar el **Historial**, la fila de títulos y las columnas **Casillero**, **Bloque** y **WhatsApp** de la pestaña Casilleros. Quien tenga la hoja compartida puede marcar casillas, escribir datos y cambiar la Configuración.
+Las ediciones se anotan en el Historial con un **disparador instalable** (`alEditar`, lo crea *Configurar hoja*): corre como el dueño y por eso puede escribir en el Historial protegido.
 
 ## Uso diario (Logística)
 | Quiero… | En la pestaña Casilleros |
 |---|---|
-| Confirmar un pago | Marcar **Pagó** |
+| Confirmar un pago | Marcar **Pagó** (la columna *Pagó el* se llena sola con la fecha) |
 | Alquilar "por fuera" | Llenar la fila y marcar **Ocupado** y **Pagó**. Dejar *Reservado el* vacío (así no vence) |
 | Liberar un casillero | Desmarcar **Ocupado** → la fila se limpia y los datos quedan en el Historial |
 | Casillero dañado o del CCOA | Marcar **Inhabilitado** (y escribir el motivo en Notas) |
 | Cerrar/abrir el periodo | Pestaña Configuración → *Periodo de alquiler abierto* |
+| Escribirle al alumno | Clic en **Escribir** (columna WhatsApp; solo si la fila tiene celular) |
+| Cambiar a quién se yapea | Pestaña Configuración → *Yape: a nombre de* y *Yape: número*. El QR se cambia en `sitio/assets/yape-qr.png` |
 | Cambiar de ciclo | Menú **Casilleros CCOA → Empezar nuevo ciclo…** (renovación con prioridad) |
 
 Colores: naranja = reservado (por pagar), morado = ocupado (pagado), gris = inhabilitado.

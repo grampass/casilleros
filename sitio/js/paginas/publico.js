@@ -25,10 +25,11 @@ async function refrescar() {
     $('#reintentar').addEventListener('click', refrescar);
     return;
   }
-  // Con servidor, la Google Sheet manda sobre ciclo, precio y horas.
+  // Con servidor, la Google Sheet manda sobre ciclo, precio, horas y a quién se yapea.
   if (datos.ciclo) CONFIG.ciclo = datos.ciclo;
   if (datos.precio) CONFIG.precio = datos.precio;
   if (datos.horas) CONFIG.horasReserva = datos.horas;
+  if (datos.yape?.titular) CONFIG.yape = { ...CONFIG.yape, ...datos.yape };
   textosDelCiclo();
 
   const { casilleros, abierto } = datos;
