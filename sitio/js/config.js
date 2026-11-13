@@ -20,8 +20,10 @@ export const CONFIG = {
   // Precio por ciclo en soles. null = se muestra "a confirmar".
   precio: 14,
 
-  // Pago por Yape. qr: ruta de la imagen del QR (null = no se muestra).
-  yape: { titular: 'Paolo Palacios', numero: '966 378 397', qr: 'assets/yape-qr.png' },
+  // Pago por Yape (cuenta del Secretario de Economía del CCOA).
+  // numero: '' = no se muestra. qr: ruta de la imagen del QR (null = no se muestra).
+  // La captura igual se envía al WhatsApp de Logística (arriba).
+  yape: { titular: 'Alexander Guillen Olivera', numero: '', qr: 'assets/yape-qr.png' },
 
   // Redes del CCOA (pie de página).
   // Para quitar una, bórrala de la lista; para agregar, copia una línea.

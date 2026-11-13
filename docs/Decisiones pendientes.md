@@ -4,7 +4,7 @@ Volver a [[00 Inicio]]. Ver también [[Puesta en marcha]].
 
 ## Ya decidido
 - [x] Duración: por ciclo. Uno por persona. El candado lo pone cada alumno.
-- [x] Precio **S/ 14**, pago por **Yape** a Paolo Palacios (966 378 397) con captura por WhatsApp. QR en la página.
+- [x] Precio **S/ 14**, pago por **Yape** a la cuenta del Secretario de Economía (Alexander Guillen Olivera; desde 2026-11-12, antes Paolo Palacios) con captura por WhatsApp a Logística (966 378 397). QR en la página.
 - [x] **48 h** para pagar; si no, se libera sola.
 - [x] **Renovación** con prioridad para quienes ya tienen casillero (menú *Empezar nuevo ciclo…* en la hoja). Publicidad avisa por redes.
 - [x] Algunos casilleros son del CCOA → se marcan *Inhabilitado* en la hoja.

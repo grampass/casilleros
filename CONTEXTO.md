@@ -1,6 +1,6 @@
 # Contexto del proyecto: Casilleros CCOA
 
-> **Para cualquier IA o persona que continúe este proyecto.** Lee este archivo primero: resume todo lo decidido, lo hecho y lo pendiente, sin necesidad de conversaciones anteriores. Última actualización: **2026-10-08**.
+> **Para cualquier IA o persona que continúe este proyecto.** Lee este archivo primero: resume todo lo decidido, lo hecho y lo pendiente, sin necesidad de conversaciones anteriores. Última actualización: **2026-11-12**.
 > Si cambias algo importante, **actualiza este archivo** (sección 9, "Historial").
 
 ---
@@ -17,7 +17,7 @@ Página web para que la **Secretaría de Logística** del **Centro Cultural Ósc
 1. Ve el mapa de casilleros con su estado (libre, reservado, ocupado, inhabilitado).
 2. Elige uno libre y llena apellidos, nombres, código UNI y celular, y acepta las condiciones.
 3. El casillero queda **reservado 48 h**: nadie más puede tomarlo.
-4. Yapea **S/ 14** a Paolo Palacios (966 378 397) y envía la captura por **WhatsApp** (botón con el mensaje ya escrito).
+4. Yapea **S/ 14** al **Secretario de Economía del CCOA** (Alexander Guillen Olivera, con el QR de la página) y envía la captura por **WhatsApp a Logística** (966 378 397; botón con el mensaje ya escrito).
 5. Logística confirma el pago → el casillero pasa a **ocupado**. Si no paga en 48 h, se libera solo.
 
 **Logística (panel interno):** ve quién tiene cada casillero y su contacto, confirma pagos, asigna a mano, libera, inhabilita, busca, ve la bitácora (quién hizo qué) y exporta a Excel (CSV).
@@ -29,7 +29,7 @@ Página web para que la **Secretaría de Logística** del **Centro Cultural Ósc
 |---|---|
 | Duración | Un ciclo (ciclo actual: **2026-2**) |
 | Precio | **S/ 14** por ciclo |
-| Pago | Yape a nombre de **Paolo Palacios**, **966 378 397**; captura al mismo WhatsApp |
+| Pago | Yape a la cuenta del **Secretario de Economía** (Alexander Guillen Olivera; QR en `sitio/assets/yape-qr.png`, original en `material/`). Su número aún no está en la página (`config.js` → `yape.numero` vacío). Captura al WhatsApp de Logística |
 | WhatsApp de Logística | 966 378 397 (`51966378397`) |
 | Plazo para pagar | 48 h; si no, la reserva se cancela sola |
 | Casilleros por persona | Uno (se controla por código UNI) |
@@ -134,6 +134,7 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 **De Paolo:**
 - [x] `gh auth login` con token (cuenta grampass) ✔. Repositorio público creado y página publicada ✔.
 - [x] Arreglo del ciclo como fecha cargado en Apps Script ✔.
+- [ ] Número de celular del Secretario de Economía para mostrarlo junto al QR (`config.js` → `yape.numero`).
 - [ ] Mascotas en buena calidad (PNG ≥ 500 px): portapapeles, leyendo libro, balón.
 - [x] QR de Yape → `sitio/assets/yape-qr.png` (original en `material/`) ✔.
 - [x] Google Sheet instalada en el Gmail personal y probada: reserva, correo de aviso y WhatsApp OK ✔.
@@ -169,3 +170,4 @@ CCOA/                       (carpeta local de Paolo; NO es la de sus cursos de l
 - **2026-10-09:** pie de página con logo, Facebook y canal de WhatsApp; panel de demostración fuera de la página publicada; mantenimiento (ajustes y estilos sin uso eliminados, notas de docs/ actualizadas al estado real).
 - **2026-10-12:** disposición confirmada con fotos (5×4, 1 arriba a la izquierda, por filas). Agregado el **bloque C** (dentro del CCOA, 1C–20C) en la página y en el servidor; *Configurar hoja* ahora agrega los casilleros que falten.
 - **2026-10-13:** menú *Importar ocupantes…* en la hoja (pestaña Importar → carga con historial). Lista 2026-2 preparada en `material/` (no se sube: datos personales).
+- **2026-11-12:** el Yape pasa a la cuenta del Secretario de Economía (QR nuevo, sin número por ahora); la captura sigue yendo al WhatsApp de Logística. Guía PDF y presentación de uso para el equipo.

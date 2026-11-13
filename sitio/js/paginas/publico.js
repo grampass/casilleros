@@ -110,7 +110,7 @@ function confirmar(a) {
       <div class="exito__num">${seguro(a.casilleroId)}</div>
       <p>Queda apartado a tu nombre hasta el <strong>${fecha(a.venceReserva)}</strong></p>
       <div class="pago">
-        <p><b>1.</b> Yapea <strong>${precio()}</strong> a <strong>${seguro(yape.titular)}</strong> · <span class="sin-corte">${seguro(yape.numero)}</span></p>
+        <p><b>1.</b> Yapea <strong>${precio()}</strong> a <strong>${seguro(yape.titular)}</strong>${yape.numero ? ` · <span class="sin-corte">${seguro(yape.numero)}</span>` : ''}</p>
         ${yape.qr ? `<img class="pago__qr" src="${seguro(yape.qr)}" alt="QR de Yape">` : ''}
         <p><b>2.</b> Envía la captura por WhatsApp. Logística confirma tu casillero.</p>
       </div>
